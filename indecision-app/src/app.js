@@ -5,7 +5,7 @@ class IndecisionApp  extends React.Component {
     this.handlePick = this.handlePick.bind(this);
     this.handleAddOption = this.handleAddOption.bind(this);
     this.state = {
-      options: []
+      options: props.options
     }
   } 
 
@@ -42,13 +42,13 @@ class IndecisionApp  extends React.Component {
   }
 
   render() {
-    const title = "Indecision" // 부모 component가 자식컴포넌트에게 주는 값 = props
+    const title = "Indecision"  // 부모 component가 자식컴포넌트에게 주는 값 = props
     const subTitle = "You should understand";
 
     //Option Components 에 options라는 props 값에 this.state.options 라는 state값을 할당!
     return (
       <div>
-        <Header title={title} subtitle={subTitle}/>
+        <Header />
         <Action 
           hasOptions={this.state.options.length > 0}
           handlePick = {this.handlePick}
@@ -64,15 +64,24 @@ class IndecisionApp  extends React.Component {
   }
 }
 
+IndecisionApp.defaultProps = {
+  options: []
+}
+
 const Header = (props) => {
   return(
     <div>
       <h1>{props.title}</h1>
-      <h2>{props.subtitle}</h2>
+      {props.subtitle && <h2>{props.subtitle}</h2>}
     </div>
-  )
+  );
+};
 
-}
+
+Header.defaultProps = { // 부모 Component에서 title 값을 전달해 주지 않았을 경우 deafult Props값을 설정
+  title: 'some default!',
+  subtitle: 'this is the default subtitle'
+};
 
 // class Header extends React.Component {
 //   render() {
@@ -187,4 +196,4 @@ class AddOption extends React.Component {
 //   )
 // }
 
-ReactDOM.render(<IndecisionApp />, document.getElementById('app')) 
+ReactDOM.render(<IndecisionApp options={['option1', 'option3', 'optin2']}/>, document.getElementById('app')) 
