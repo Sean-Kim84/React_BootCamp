@@ -1,13 +1,45 @@
-class Indecision  extends React.Component {
+class IndecisionApp  extends React.Component {
+  constructor(props){
+    super(props);
+    this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
+    this.handlePick = this.handlePick.bind(this);
+    this.state = {
+      options: ['Thing one', 'Thing two', 'Thing three']
+    }
+  }
+
+  // handlDelete Options
+  handleDeleteOptions() {
+    this.setState(() => {
+      return {
+        options: []
+      };  
+    });
+  };
+
+  // handlePick --passDown to Action and setup onClick -bind here
+  // randomly pick an option and alert
+  handlePick() {
+    const randomNum = Math.floor(Math.random() * this.state.options.length);
+    const option = this.state.options[randomNum];
+    alert(option);
+  } 
+
   render() {
     const title = "Indecision" // 부모 component가 자식컴포넌트에게 주는 값 = props
     const subTitle = "You should understand";
-    const options = ['Thing one', 'Thing two', 'Thing three'];
+
+    //Option Components 에 options라는 props 값에 this.state.options 라는 state값을 할당!
     return (
       <div>
         <Header title={title} subtitle={subTitle}/>
-        <Action />
-        <Options options={options}/>
+        <Action 
+          hasOptions={this.state.options.length > 0}
+          handlePick = {this.handlePick}
+        />
+        <Options
+          handleDeleteOptions={this.handleDeleteOptions}
+          options={this.state.options}/>
         <AddOption />
       </div>
     )
@@ -26,29 +58,24 @@ class Header extends React.Component {
 }
 
 class Action extends React.Component {
-  handleClick() {
-    alert('handlePick')
-  }
   render(){
     return (
       <div>
-        <button onClick={this.handleClick}>What should I do</button>
+        <button 
+          onClick = {this.props.handlePick}
+          disabled={!this.props.hasOptions}
+          >
+        What should I do</button>
       </div>
     )
   }
 }
 
 class Options extends React.Component { 
-  
-  handleRemoveAll() {
-    //  binding 을 하지 않으면 부모클래스의 props를 가지고 올 수 없다
-    console.log(this.props.options);
-  
-  }
   render() { // 아래 코드를 보면 실행하려는 함수측에서 bind로 무엇을 refer하는 지를 지칭한다
     return (
       <div>
-        <button onClick={this.handleRemoveAll.bind(this)}>RemoveAll</button>
+        <button onClick={this.props.handleDeleteOptions}>RemoveAll</button>
         {this.props.options.map(option => <Option key={option} optionText={option}/>)}
       </div> 
     )
@@ -96,4 +123,4 @@ class AddOption extends React.Component {
 //   </div>
 // )
 
-ReactDOM.render(<Indecision />, document.getElementById('app')) 
+ReactDOM.render(<IndecisionApp />, document.getElementById('app')) 
