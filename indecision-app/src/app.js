@@ -3,10 +3,11 @@ class IndecisionApp  extends React.Component {
     super(props);
     this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
     this.handlePick = this.handlePick.bind(this);
+    this.handleAddOption = this.handleAddOption.bind(this);
     this.state = {
-      options: ['Thing one', 'Thing two', 'Thing three']
+      options: []
     }
-  }
+  } 
 
   // handlDelete Options
   handleDeleteOptions() {
@@ -25,6 +26,21 @@ class IndecisionApp  extends React.Component {
     alert(option);
   } 
 
+  handleAddOption(option) {
+    if(!option) {
+      return 'Enter valid value to add item'
+    } else if(this.state.options.indexOf(option) > -1){ // 중복되는값 체크
+      return 'This option already exists'
+    } else {
+      this.setState((prevState) => {
+        return {
+          options: prevState.options.concat([option])
+        }
+      })
+    }
+    
+  }
+
   render() {
     const title = "Indecision" // 부모 component가 자식컴포넌트에게 주는 값 = props
     const subTitle = "You should understand";
@@ -40,7 +56,9 @@ class IndecisionApp  extends React.Component {
         <Options
           handleDeleteOptions={this.handleDeleteOptions}
           options={this.state.options}/>
-        <AddOption />
+        <AddOption 
+          handleAddOption={this.handleAddOption}  
+        />
       </div>
     )
   }
@@ -93,18 +111,30 @@ class Option extends React.Component {
 }
 
 class AddOption extends React.Component {
+  constructor(props){
+    super(props);
+    this.handleAddOption = this.handleAddOption.bind(this);
+    this.state = {
+      error: undefined
+    };
+  }
 
-  handleAddOption(e) {
+  handleAddOption(e) { // 아래에 props로 상위클래스에서 가져온 handleAddOption이 있지만 여기서도 같은 이름으로 함수를 설정가능하다
     e.preventDefault();
     const option = e.target.elements.option.value.trim();
-    if(option){
-      alert(option)
-    }
-  }
+    const error = this.props.handleAddOption(option);
+    
+    this.setState(() => {
+      return {
+        error
+      }
+    });
+  } 
 
   render() {
     return (
       <div>
+        {this.state.error && (<p>{this.state.error}</p>)}
         <form onSubmit={this.handleAddOption}>
           <input type="text" name="option"/>
           <button>Submit</button>
