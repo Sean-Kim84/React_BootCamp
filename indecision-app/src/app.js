@@ -64,41 +64,73 @@ class IndecisionApp  extends React.Component {
   }
 }
 
-class Header extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>{this.props.title}</h1>
-        <h2>{this.props.subtitle}</h2>
-      </div>
-    );
-  }
+const Header = (props) => {
+  return(
+    <div>
+      <h1>{props.title}</h1>
+      <h2>{props.subtitle}</h2>
+    </div>
+  )
+
 }
 
-class Action extends React.Component {
-  render(){
-    return (
-      <div>
-        <button 
-          onClick = {this.props.handlePick}
-          disabled={!this.props.hasOptions}
-          >
-        What should I do</button>
-      </div>
-    )
-  }
+// class Header extends React.Component {
+//   render() {
+//     return (
+//       <div>
+//         <h1>{this.props.title}</h1>
+//         <h2>{this.props.subtitle}</h2>
+//       </div>
+//     );
+//   }
+// }
+
+const Action = (props) => {
+  return (
+    <div>
+      <button
+        onClick={props.handlePick}
+        disabled={!props.hasOptions}
+      >
+        What should I do? 
+      </button>
+    </div>
+  );
+};
+
+// class Action extends React.Component {
+//   render(){
+//     return (
+//       <div>
+//         <button 
+//           onClick = {this.props.handlePick}
+//           disabled={!this.props.hasOptions}
+//           >
+//         What should I do</button>
+//       </div>
+//     )
+//   }
+// }
+
+const Options = (props) => {
+  return (
+    <div>
+      <button onClick={props.handleDeleteOptions}>Delete All</button>
+      {props.options.map(option => <Option key={option} optionText={option}/>)}
+    </div>
+  )
 }
 
-class Options extends React.Component { 
-  render() { // 아래 코드를 보면 실행하려는 함수측에서 bind로 무엇을 refer하는 지를 지칭한다
-    return (
-      <div>
-        <button onClick={this.props.handleDeleteOptions}>RemoveAll</button>
-        {this.props.options.map(option => <Option key={option} optionText={option}/>)}
-      </div> 
-    )
-  }
-}
+// class Options extends React.Component { 
+//   render() { // 아래 코드를 보면 실행하려는 함수측에서 bind로 무엇을 refer하는 지를 지칭한다
+//     return (
+//       <div>
+//         <button onClick={this.props.handleDeleteOptions}>RemoveAll</button>
+//         {this.props.options.map(option => <Option key={option} optionText={option}/>)}
+//       </div> 
+//     )
+//   }
+// }
 
 class Option extends React.Component {
   render(){
@@ -144,13 +176,15 @@ class AddOption extends React.Component {
   }
 }
 
-// const jsx = (
-//   <div>
-//     <Header />
-//     <Action />
-//     <Options />
-//     <AddOption />
-//   </div>
-// )
+
+//functional Component 
+// const User = (props) => {
+//   return (
+//     <div>
+//       <p>Name: {props.name}</p>
+//       <p>Age: {props.age}</p> 
+//     </div>
+//   )
+// }
 
 ReactDOM.render(<IndecisionApp />, document.getElementById('app')) 
