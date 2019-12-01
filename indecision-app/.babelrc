@@ -1,0 +1,6 @@
+{
+    "presets": [ //react 환경에서 babel 을 실행
+        "env", 
+        "react"
+    ]
+}
