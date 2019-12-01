@@ -9,6 +9,22 @@ class Counter extends React.Component {
             count: props.count 
         };
     }
+    componentDidMount() {
+        const stringCount = localStorage.getItem('count');
+        const count = parseInt(stringCount, 10);
+
+        if(!isNaN(count)){
+            this.setState(() => ({
+                count
+            }))
+        }
+    }
+    componentDidUpdate(prevProps, prevState) {
+        console.log('componentDidUpdate');
+        if(prevState.count !== this.state.count){
+            localStorage.setItem('count', this.state.count);
+        }
+    };
 
     handleAddOne() {
         this.setState({
@@ -20,7 +36,7 @@ class Counter extends React.Component {
         //     };
         // });
         // this.state.count = this.state.count +1;
-        console.log(this.state);
+        
     };
 
     handleMinusOne() {
@@ -32,7 +48,7 @@ class Counter extends React.Component {
         this.setState({ //prevState에 직접접근
             count: this.state.count -1
         })
-        console.log(this.state);
+        
     };
 
     handleReset() {
