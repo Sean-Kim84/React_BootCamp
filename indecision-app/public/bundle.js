@@ -71,6 +71,7 @@
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_js__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__person__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__person___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__person__);
 
 
 
@@ -78,8 +79,10 @@ console.log(__WEBPACK_IMPORTED_MODULE_0__utils_js__["a" /* add */](3,4));
 console.log(__WEBPACK_IMPORTED_MODULE_0__utils_js__["b" /* square */](3));
 
 
-console.log(__WEBPACK_IMPORTED_MODULE_1__person__["b" /* isAdult */](19));
-console.log(__WEBPACK_IMPORTED_MODULE_1__person__["a" /* canDrink */](22));
+console.log(__WEBPACK_IMPORTED_MODULE_1__person__["isAdult"](19));
+console.log(__WEBPACK_IMPORTED_MODULE_1__person__["canDrink"](22));
+
+console.log(__WEBPACK_IMPORTED_MODULE_1__person__["default"](10,9));
 
 
 /***/ }),
@@ -106,16 +109,9 @@ const add = (a,b) => a + b;
 
 /***/ }),
 /* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return isAdult; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return canDrink; });
-const isAdult = (age) => age >= 18;
-const canDrink = (age) => age >= 21;
-
-
-
+throw new Error("Module parse failed: /Users/rebekahpark/Desktop/BootCamp/react_course/indecision-app/src/person.js Duplicate export 'default' (15:7)\nYou may need an appropriate loader to handle this file type.\n| };\n| \n| export default devided;\n| ");
 
 /***/ })
 /******/ ]);
