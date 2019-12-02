@@ -3,10 +3,12 @@
   color: white;
   margin-bottom: 4.8rem;
   padding: 1.6rem; 
-  
+
   &__title {
     font-size: 3.2rem;
-    font-weight:500;
+    font-weight:600;
+    text-transform: uppercase;
+    letter-spacing: 0.6rem;
   }
 
   &__subtitle {

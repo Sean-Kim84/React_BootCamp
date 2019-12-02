@@ -13,14 +13,12 @@ module.exports = {
             test: /\.js$/,
             exclude: /node_modules/
         }, {
-            test: /\.(sa|sc|c)ss$/,
+            test: /\.s?css$/,
             use: [
                 "style-loader", // creates style nodes from JS strings
                 "css-loader", // translates CSS into CommonJS
                 "sass-loader" // compiles Sass to CSS, using Node Sass by default
-            ],
-            exclude: /node_modules/
-            
+            ]
         }]
     },
     devtool: 'cheap-module-eval-source-map', // chrome에서 어디에 error가 발생했는지 정확하게 알려준다
