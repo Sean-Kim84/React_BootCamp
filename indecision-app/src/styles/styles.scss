@@ -1,6 +1,9 @@
 @import './base/settings'; // 세팅파일이기 때문에 가장위로 올려야 한다
 @import './base/base';
+
+@import './components/add-option';
 @import './components/container';
 @import './components/header';
 @import './components/button';
 @import './components/widget';
+@import './components/options';
