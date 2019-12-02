@@ -1,11 +1,11 @@
 .header {
-  background: black;
+  background: $off-black;
   color: white;
-  margin-bottom: 4.8rem;
-  padding: 1.6rem; 
+  margin-bottom: $xl-size;
+  padding: $m-size; 
 
   &__title {
-    font-size: 3.2rem;
+    font-size: $l-size;
     font-weight:600;
     text-transform: uppercase;
     letter-spacing: 0.6rem;
@@ -13,7 +13,7 @@
 
   &__subtitle {
     font-weight: 200;
-    color: #a5afd7;
+    color: $off-white
   }
 }
 
